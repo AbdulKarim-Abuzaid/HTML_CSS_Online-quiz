@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="headS"></div>
+    <div class="quize">
+      <h1 class="title">Backend interview</h1>
+        <form name="quiz" id="quiz-form" onsubmit="return validation()">
+            <!-- Question 1 -->
+            <div class="question">
+                <h2 class="q_tit">Q1: HTML is ?</h2>
+                <div class="answer">
+                    <label>
+                        <input type="radio" name="q1" value="Markup"> MarkUp language 
+                    </label>
+                    <label>
+                        <input type="radio" name="q1" value="Framework"> backend framework
+                    </label>
+                    <label>
+                        <input type="radio" name="q1" value="Protocol"> Network protocol
+                    </label>
+                    <label>
+                        <input type="radio" name="q1" value="Browser"> browser
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <!-- Question 2 -->
+            <div class="question">
+                <h2 class="q_tit">Q2: What is the faster Data structure?</h2>
+                <div class="answer">
+                    <label>
+                        <input type="radio" name="q2" value="Linked List"> Linked List
+                    </label>
+                    <label>
+                        <input type="radio" name="q2" value="Table"> Table
+                    </label>
+                    <label>
+                        <input type="radio" name="q2" value="Stack"> Stack
+                    </label>
+                    <label>
+                        <input type="radio" name="q2" value="Queue"> Queue
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <!-- Question 3 -->
+            <div class="question">
+                <h2 class="q_tit">Q3: Spring boot is</h2>
+                <div class="answer">
+                    <label>
+                        <input type="radio" name="q3" value="JS Framework"> JS framework
+                    </label>
+                    <label>
+                        <input type="radio" name="q3" value="C# Framework"> C# framework
+                    </label>
+                    <label>
+                        <input type="radio" name="q3" value="Python Framework"> Python framework
+                    </label>
+                    <label>
+                        <input type="radio" name="q3" value="Java Framework"> Java framework
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <!-- Question 4 -->
+            <div class="question">
+                <h2 class="q_tit">Q4: 404 Request status is?</h2>
+                <div class="answer">
+                    <label>
+                        <input type="radio" name="q4" value="Not Found"> Not Found 
+                    </label>
+                    <label>
+                        <input type="radio" name="q4" value="Blue"> Blue
+                    </label>
+                    <label>
+                        <input type="radio" name="q4" value="Green"> Green
+                    </label>
+                    <label>
+                        <input type="radio" name="q4" value="Yellow"> Yellow
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <!-- Question 5 -->
+            <div class="question">
+                <h2 class="q_tit">Q5: Which of these is a primary color?</h2>
+                <div class="answer">
+                    <label>
+                        <input type="radio" name="q5" value="Red"> Red
+                    </label>
+                    <label>
+                        <input type="radio" name="q5" value="Blue"> Blue
+                    </label>
+                    <label>
+                        <input type="radio" name="q5" value="Green"> Green
+                    </label>
+                    <label>
+                        <input type="radio" name="q5" value="Yellow"> Yellow
+                    </label>
+                </div>
+            </div>
+            <div class="sub"><input type="submit" value="Submit"></div>
+        </form>
+    </div>
+
+<script>
+   function validation() {
+
+    let isValid = true;
+    let questions = document.querySelectorAll('.question'); // Get all questions
+
+  
+    questions.forEach((question) => {
+        let isAnswered = false;
+        let radioButtons = question.querySelectorAll('input[type="radio"]');
+   
+         
+         // Clear previous error message
+         let errorMsg = question.querySelector('.error-message');
+        if (errorMsg) {
+            errorMsg.remove();
+        }
+        // Check if any option is selected
+        radioButtons.forEach((radio) => {
+            if (radio.checked) {
+                isAnswered = true;
+            }
+        });
+
+    
+        // If unanswered, show error message and turn the question title red
+        if (!isAnswered) {
+            isValid = false;
+            question.querySelector('.q_tit').style.color = 'red';
+
+            let error = document.createElement('div');
+            error.className = 'error-message';
+            error.style.color = 'red';
+            error.textContent = '>>This question must be answered';
+            question.appendChild(error);
+        } else {
+            question.querySelector('.q_tit').style.color = 'black'; // Reset title color if answered
+        }
+    });
+
+    // If all questions are answered, show an alert
+    if (isValid) {
+        alert("All questions are answered! Submitting the quiz.");
+    }
+
+   return isValid// Prevent form submission if any question is unanswered
+}
+
+</script>
+        
+</body>
+</html>
